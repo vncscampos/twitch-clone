@@ -5,8 +5,8 @@ import { useRouter } from "next/navigation";
 
 import qs from "query-string";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../../../components/ui/button";
+import { Input } from "../../../../components/ui/input";
 
 export function Search() {
   const router = useRouter();

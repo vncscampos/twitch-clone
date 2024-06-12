@@ -3,7 +3,7 @@ import { currentUser } from "@clerk/nextjs/server";
 import { Clapperboard } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "../ui/button";
+import { Button } from "../../../../components/ui/button";
 
 export async function Actions() {
   const user = await currentUser();
