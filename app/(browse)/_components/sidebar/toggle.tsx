@@ -2,6 +2,7 @@
 
 import { Hint } from "@/components/hint";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useSidebar } from "@/store/use-sidebar";
 import { ArrowLeftFromLine, ArrowRightFromLine } from "lucide-react";
 
@@ -15,7 +16,7 @@ export function Toggle() {
         <div className="hidden lg:flex w-full items-center justify-center pt-4 mb-4">
           <Hint label={label} side="right" asChild>
             <Button
-              className="h-auto p-2 ml-auto"
+              className="h-auto p-2"
               variant="ghost"
               onClick={onExpand}
             >
@@ -39,5 +40,14 @@ export function Toggle() {
         </div>
       )}
     </>
+  );
+}
+
+export function ToggleSkeleton() {
+  return (
+    <div className="p-3 pl-6 mb-2 hidden lg:flex items-center justify-between w-full">
+      <Skeleton className="h-6 w-[100px]" />
+      <Skeleton className="h-6 w-6" />
+    </div>
   );
 }
