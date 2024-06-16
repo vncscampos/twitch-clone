@@ -1,7 +1,7 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { Fullscreen, MessageSquare, Users } from "lucide-react";
+import { Fullscreen, KeyRound, MessageSquare, Users } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { NavItem, NavItemSkeleton } from "./nav-item";
 
@@ -12,8 +12,13 @@ export function Navigation() {
   const routes = [
     {
       label: "Stream",
-      href: `/u/${user?.username}/keys`,
+      href: `/u/${user?.username}`,
       icon: Fullscreen,
+    },
+    {
+      label: "Keys",
+      href: `/u/${user?.username}/keys`,
+      icon: KeyRound,
     },
     {
       label: "Chat",
