@@ -18,15 +18,14 @@ export async function createViewerToken(hostIdentity: string) {
   }
 
   const host = await getUserById(hostIdentity);
-
   if (!host) throw new Error("User not found");
 
   const isBlocked = await isBlockedByUser(host.id);
-
-  if (!isBlocked) throw new Error("User is blocked");
+  if (isBlocked) throw new Error("User is blocked");
 
   const isHost = self.id === host.id;
 
+  //cria token pro viewer
   const token = await new AccessToken(
     process.env.LIVEKIT_API_KEY!,
     process.env.LIVEKIT_API_SECRET!,
@@ -36,6 +35,7 @@ export async function createViewerToken(hostIdentity: string) {
     }
   );
 
+  //permissões para o viewer
   token.addGrant({
     room: host.id,
     roomJoin: true,
@@ -43,5 +43,6 @@ export async function createViewerToken(hostIdentity: string) {
     canPublishData: true,
   });
 
+  //retorna o token jwt p conectar com livekit server
   return await Promise.resolve(token.toJwt());
 }

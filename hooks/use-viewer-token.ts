@@ -4,7 +4,8 @@ import { toast } from "sonner";
 
 import { createViewerToken } from "@/actions/token";
 
-export async function useViewerToken(hostIdentity: string) { // hostIdentity é o id de quem assiste
+export const useViewerToken = (hostIdentity: string) => {
+  // hostIdentity é o id de quem assiste
   const [token, setToken] = useState("");
   const [name, setName] = useState("");
   const [identity, setIdentity] = useState("");
@@ -20,7 +21,7 @@ export async function useViewerToken(hostIdentity: string) { // hostIdentity é 
         };
 
         const name = decodedToken?.name;
-        const identity = decodedToken.jti;
+        const identity = decodedToken.sub;
 
         if (identity) setIdentity(identity);
         if (name) setName(name);
