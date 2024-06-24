@@ -64,7 +64,7 @@ export function ChatForm({
                     placeholder="Send a message"
                     className={cn(
                         "border-white/10",
-                        isChatFollowersOnly && "rounded-t-none border-t-0"
+                        (isChatFollowersOnly || isChatDelayed) && "rounded-t-none border-t-0"
                     )}
                 />
             </div>
