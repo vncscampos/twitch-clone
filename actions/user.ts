@@ -1,4 +1,4 @@
-"user server";
+"use server";
 
 import { getSelf } from "@/lib/auth-service";
 import { db } from "@/lib/db";
