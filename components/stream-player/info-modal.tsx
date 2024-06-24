@@ -98,7 +98,7 @@ export function InfoModal({
                                         <Button
                                             type="button"
                                             disabled={isPending}
-                                            onClick={() => {}}
+                                            onClick={onRemove}
                                             className="h-auto w-auto p-1.5"
                                         >
                                             <Trash className="h-4 w-4" />
