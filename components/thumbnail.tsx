@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LiveBadge } from "./live-badge";
 import { Skeleton } from "./ui/skeleton";
 import { UserAvatar } from "./user-avatar";
 
@@ -16,7 +17,7 @@ export function Thumbnail({ fallback, isLive, src, username }: ThumbnailProps) {
         content = (
             <div
                 className="bg-background flex flex-col items-center justify-center gap-y-4 h-full w-full 
-                            transition-transform group-hover:translate-x-2 group-hover:-translate-y-1 rounded-md"
+                            transition-transform group-hover:translate-x-2 group-hover:-translate-y-2 rounded-md"
             >
                 <UserAvatar
                     size="lg"
@@ -45,14 +46,19 @@ export function Thumbnail({ fallback, isLive, src, username }: ThumbnailProps) {
                             flex items-center justify-center"
             />
             {content}
+            {isLive && src && (
+                <div className="absolute top-2 left-2 group-hover:translate-x-2 group-hover:-translate-y-2 ">
+                    <LiveBadge />
+                </div>
+            )}
         </div>
     );
 }
 
 export function ThumbnailSkeleton() {
-    return(
+    return (
         <div className="group aspect-video relative rounded-xl cursor-pointer">
-            <Skeleton className="h-full w-full"/>
+            <Skeleton className="h-full w-full" />
         </div>
-    )
+    );
 }
