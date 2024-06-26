@@ -9,7 +9,7 @@ const roomService = new RoomServiceClient(
     process.env.LIVEKIT_API_URL!,
     process.env.LIVEKIT_API_KEY!,
     process.env.LIVEKIT_API_SECRET!
-  );
+);
 
 export async function onBlock(id: string) {
     const self = await getSelf();
@@ -17,9 +17,7 @@ export async function onBlock(id: string) {
     let blockedUser;
     try {
         blockedUser = await blockUser(id);
-    } catch (error) {
-
-    }
+    } catch (error) {}
 
     try {
         await roomService.removeParticipant(self.id, id);
@@ -33,11 +31,11 @@ export async function onBlock(id: string) {
 }
 
 export async function onUnblock(id: string) {
+    const self = await getSelf();
     const unblockedUser = await unblockUser(id);
 
     revalidatePath("/");
-    if (unblockedUser) revalidatePath(`/${unblockedUser.blocked.username}`);
+    revalidatePath(`/u/${self.username}/community`);
 
     return unblockedUser;
 }
-
